@@ -1,7 +1,7 @@
 import requests
 import psycopg2
 import time
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 def update():
     conn = psycopg2.connect(host='ec2-44-193-188-118.compute-1.amazonaws.com', dbname='d59jrssgvr247h',user='qjqcjkjvhracnj',password='34ee13682cbe2cb0d4443247bd6e3dff51e15b3948e9997b5ae8abeb76aae644',port=5432)
@@ -57,7 +57,7 @@ def update():
     conn.commit()
     conn.close()
 
-sched = BackgroundScheduler(timezone='Asia/Seoul')
+sched = BlockingScheduler(timezone='Asia/Seoul')
 
 @sched.scheduled_job('cron', hour=1)
 def scheduled_job():

@@ -1,2 +1,2 @@
-api: gunicorn main:app
-crawler: python3 crawler.py
+api: gunicorn main:app --bind 0.0.0.0:8000
+crawler: python crawler.py

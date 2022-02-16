@@ -59,8 +59,10 @@ def update():
 
 sched = BlockingScheduler(timezone='Asia/Seoul')
 
-@sched.scheduled_job('cron', hour=1)
+@sched.scheduled_job('cron', hour=10, minute=25)
 def scheduled_job():
+    print("Start to Data Update")
     update()
+    print("Finish to Data Update")
 
 sched.start()
